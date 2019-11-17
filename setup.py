@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="uqtie",
-    version="0.1.0",
+    version="0.1.1",
     author="Nik Langrind",
     author_email="langrind@gmail.com",
     description="Utilities for small or throwaway PyQt5 applications",
