@@ -49,7 +49,12 @@ import os,re,pickle
 from   PyQt5.QtCore    import QSettings
 
 class StylesheetManager(object):
+    """
+    Class that manages a UQtie application's stylesheet
+    """
 
+    # If no stylesheet has been provided, use this one. Should this
+    # really have  scroll bar dimensions?
     defaultStylesheet = """
     QWidget {
         font-family:   $main_font_family;
@@ -80,9 +85,8 @@ class StylesheetManager(object):
             'main_font_size'  : '16pt',
             'scroll_bar_width': '15px',
         }
-            
-        self.determine_stylesheet_filenames(appName)
 
+        self.determine_stylesheet_filenames(appName)
 
     def determine_stylesheet_path(self):
         """
@@ -169,16 +173,6 @@ class StylesheetManager(object):
 
         # apply
         self.app.setStyleSheet(result)
-        
-    # Variable setters / Properties - don't want to keep adding these for every variable
-    def set_main_font_family(self, family):
-        self.varsDict['main_font_family'] = family
-
-    def set_main_font_weight(self, weight):
-        self.varsDict['main_font_weight'] = weight
-
-    def set_main_font_size(self, size):
-        self.varsDict['main_font_size'] = size
 
     def save_stylesheet_vars(self ):
         """Write our variables dict out to a file"""
@@ -225,6 +219,17 @@ class StylesheetManager(object):
         if scrollBarWidth > 0:
             scrollBarWidth -= 1
             self.varsDict['scroll_bar_width'] = f'{scrollBarWidth}px'
+
+    # Variable setters / Properties - don't want to keep adding these for every variable
+    # and the way it is evolving, it seems like we don't have to
+    def set_main_font_family(self, family):
+        self.varsDict['main_font_family'] = family
+
+    def set_main_font_weight(self, weight):
+        self.varsDict['main_font_weight'] = weight
+
+    def set_main_font_size(self, size):
+        self.varsDict['main_font_size'] = size
 
 ## Test Code
 import argparse, sys

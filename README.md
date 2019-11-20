@@ -4,7 +4,8 @@ Utilities for Qt
 
 A small set of features to make it easier to use PyQt5. Implements
 a repetive pattern for quickly building throwaway or small
-Qt applications.
+Qt applications. Features include Font Selection, Zoom In/Out,
+and geometry persistence.
 
 ## Getting Started
 
