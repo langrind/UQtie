@@ -8,9 +8,47 @@ from __future__   import print_function
 from pymavlink    import mavutil
 from argparse     import ArgumentParser
 from builtins     import object
-from PyQt5.QtCore import QThread, QSocketNotifier
+from PyQt5.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QSocketNotifier
 
 import time, sys, os
+
+# To be addressed:
+#   how to detach from QSocketNotifier
+#   how to identify socket error conditions, since they happen in mavutil
+#   how to convey the timestamps from the file (when reading a file)
+
+class UqtMavFileRecvWorker(QObject):
+    """Worker thread for reading from a file and emitting MAVLink messages as Qt Signals"""
+
+    finished = pyqtSignal()
+
+    def __init__(self, mavfile, rxMsgSignal, msg_types=None ):
+        super(self.__class__, self).__init__()
+
+        self.msg_types = msg_types
+        self.mavfile = mavfile
+        self.rxMsgSignal = rxMsgSignal
+
+    @pyqtSlot()
+    def worker(self):
+        """This is the actual thread service loop"""
+        self.running = True
+        nRx = 0
+        while self.running:
+            try:
+                msg = self.mavfile.recv_msg()
+                if msg:
+                    self.rxMsgSignal.emit(msg, time.time())
+                    nRx += 1
+                else:
+                    break
+            except Exception as error:
+                print(f'{error}' )
+                #self.running = False
+                #break
+
+        self.rxMsgSignal.emit(None, 0)
+        self.finished.emit()
 
 class UqtMavConn(object):
     '''
@@ -115,7 +153,7 @@ class UqtMavConn(object):
         if self.mavfile:
             if isinstance(self.mavfile, mavutil.mavmmaplog):
                 self.thread = QThread()
-                self.recvWorker = MomuFileRecvWorker(self.mavfile, self.rxMsgSignal, self.recvMatch)
+                self.recvWorker = UqtMavFileRecvWorker(self.mavfile, self.rxMsgSignal, self.recvMatch)
                 self.recvWorker.moveToThread(self.thread)
                 self.recvWorker.finished.connect(self.thread.quit)                
                 self.thread.started.connect(self.recvWorker.worker)
@@ -194,7 +232,6 @@ class UqtMavConn(object):
         mavArgParser.add_argument("--mavlink-version", metavar='VERSION',
                                    help='Example: --mavlink-version 2.0')
         return mavArgParser
-
 
 # Test Code
 def main():
