@@ -10,6 +10,8 @@ Features include Font Selection, Zoom In/Out, and geometry persistence.
    :maxdepth: 2
    :caption: Contents:
 
+   intro
+   main_window
    stylesheet_variables
 
 

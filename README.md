@@ -68,7 +68,7 @@ TBS: details about usage in different OS environments
 | UqtStylesheet | Allows app to maintain a QSS file with variable properties -    |
 |               | a "poor man's SASS"                                             |
 
-You can view the source of `simple_uqtie.py `i n the `example/` subdirectory of the repo.
+You can view the source of `simple_uqtie.py ` in the `example/` subdirectory of the repo.
 
 There are three items of note:
 

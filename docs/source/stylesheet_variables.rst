@@ -17,7 +17,7 @@ These variables can be used in the stylesheet, such that the dynamic changes in
 appearance can be made at runtime without requiring stylesheet changes, and the
 changes can be persisted also without changing the stylesheet.
 
-Font, font size and widget sizes (e.g QScrollBar:vertical { width } ) seem like
+Widget sizes (e.g ``QScrollBar:vertical { width }``), Font, and font size seem like
 good candidates to be determined dynamically instead of via hardcoded values
 in a stylesheet. That way, when you have high-DPI monitor and less-than-perfect
 vision, you can adjust easily.
@@ -28,7 +28,7 @@ some ways. If they would all have identical QScreens given identical monitors
 and graphics cards, then you could just make reasonable choices for your stylesheet,
 and rely on the OS GUI settings.
 
-Variables you can use in a QSS file are:
+Variables you can use in a QSS file are::
 
  $main_font_family
  $main_font_weight (not supported yet)
