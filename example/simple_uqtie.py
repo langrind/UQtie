@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+"""
+Example app that does nothing. You can select the font
+from the File menu, or zoom via the View menu.
+"""
 
 import argparse, sys
 

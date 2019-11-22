@@ -47,53 +47,52 @@ and then run the setup script:
 python setup.py
 ```
 
-To show **uqtie** in action, run this script (or you can use `example/simple_uqtie.py` if you've
-cloned the repo):
-
-```bash
-#!/usr/bin/env python
-
-import argparse, sys
-
-from   uqtie           import UqtWin
-from   PyQt5.QtWidgets import QApplication, QVBoxLayout
-
-class TestAppMainWindow(UqtWin.MainWindow):
-
-    def __init__(self, parsedArgs, **kwargs ):
-        super(TestAppMainWindow, self).__init__(parsedArgs, **kwargs)
-        self.setup_ui()
-        self.show()
-
-    def setup_ui(self):
-        vbox = QVBoxLayout(self.centralWidget())
-
-        # Here you can add widgets to the vbox layout
-        # ... etc.
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-x', '--test', help='Test Argument placeholder', default='Test')
-    parsedArgs,unparsedArgs = parser.parse_known_args()
-
-    # Pass unparsed args to Qt, might have some X Windows args, like --display
-    qtArgs = sys.argv[:1] + unparsedArgs
-    app = QApplication(qtArgs)
-
-    # can add optional title='OptionalTitle' if it is different from your app name
-    mainw = TestAppMainWindow(parsedArgs, app=app, organizationName='Craton', appName='UqtTest')
-
-    sys.exit(app.exec_())
-```
+To show **uqtie** in action, run `simple_uqtie.py`. It's a do-nothing app,
+the lets you select the font from the File menu, or zoom via the View menu.
+It's copied in your $PATH when you install the **UQtie** package.
 
 ## Tests
 
-There are no tests yet.
+There are no tests yet, beyond running `simple_uqtie.py`.
 
 ## Deployment
 
 TBS: details about usage in different OS environments
+
+## Using UQtie
+
+| Module Name   | Purpose                                                         |
++---------------+-----------------------------------------------------------------|
+| UqtMav        | UqtMavConn allows easy use of pymavlink connections in Qt app   |
+| UqtWin        | MainWindow class provides an app main window with features      |
+| UqtStylesheet | Allows app to maintain a QSS file with variable properties -    |
+|               | a "poor man's SASS"                                             |
+
+You can view the source of `simple_uqtie.py `i n the `example/` subdirectory of the repo.
+
+There are three items of note:
+
+1) Import the `UqtWin` module:
+    ```
+	
+    from   uqtie import UqtWin
+    
+    ```
+1) Define a subclass of `MainWindow`
+    ```
+	
+	class TestAppMainWindow(UqtWin.MainWindow):
+        def __init__(self, parsedArgs, **kwargs ):
+            super(TestAppMainWindow, self).__init__(parsedArgs, **kwargs)
+	
+	```
+1) Instantiate the subclass
+    ```
+
+    # can add optional title='<OptionalTitle>' if it is different from your app name
+    mainw = TestAppMainWindow(parsedArgs, app=app, organizationName='Craton', appName='UqtTest')
+
+```
 
 ## Contributing
 
