@@ -17,10 +17,10 @@ These variables can be used in the stylesheet, such that the dynamic changes in
 appearance can be made at runtime without requiring stylesheet changes, and the
 changes can be persisted also without changing the stylesheet.
 
-Widget sizes (e.g ``QScrollBar:vertical { width }``), Font, and font size seem like
+Widget sizes (e.g ``QScrollBar:vertical { width }``), font, and font size seem like
 good candidates to be determined dynamically instead of via hardcoded values
 in a stylesheet. That way, when you have high-DPI monitor and less-than-perfect
-vision, you can adjust easily.
+vision, you can adjust on-the-fly, and your adjustments are saved automatically.
 
 Part of my motivation for doing this is because PyQt running on Windows, Linux,
 MacOS and Cygwin doesn't behave identically, not even close to identical in

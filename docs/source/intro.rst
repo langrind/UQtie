@@ -13,7 +13,7 @@ are:
 * Zoom in and Zoom out - you use CTRL-+ and CTRL-- to make text, widgets
   and borders larger or smaller
 * Qt Stylesheet (QSS) support that doesn't preclude runtime changes to
-  look and feel attributes (e.g. font)
+  look-and-feel attributes (e.g. font)
 
 These are obviously not all the features you might want your app to
 have. I intend to add more features as time goes on.
@@ -28,8 +28,10 @@ These are the modules in the **UQtie** package:
 | Module Name   | Purpose                                                         |
 +===============+=================================================================+
 | UqtMav        | UqtMavConn allows easy use of pymavlink connections in Qt app   |
++---------------+-----------------------------------------------------------------+
 | UqtWin        | MainWindow class provides an app main window with features      |
-| UqtStylesheet | Allows app to maintain a QSS file with variable properties -    |
++---------------+-----------------------------------------------------------------+
+| UqtStylesheet | Maintains a QSS file with variable properties -                 |
 |               | a "poor man's SASS"                                             |
 +---------------+-----------------------------------------------------------------+
 

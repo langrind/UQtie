@@ -76,7 +76,6 @@ There are three items of note:
     ```
 	
     from   uqtie import UqtWin
-    
     ```
 1) Define a subclass of `MainWindow`
     ```
@@ -84,15 +83,16 @@ There are three items of note:
 	class TestAppMainWindow(UqtWin.MainWindow):
         def __init__(self, parsedArgs, **kwargs ):
             super(TestAppMainWindow, self).__init__(parsedArgs, **kwargs)
-	
 	```
 1) Instantiate the subclass
     ```
 
     # can add optional title='<OptionalTitle>' if it is different from your app name
     mainw = TestAppMainWindow(parsedArgs, app=app, organizationName='Craton', appName='UqtTest')
+    ```
 
-```
+
+For more info, [RTFD](http://uqtie.rtfd.io/).
 
 ## Contributing
 
