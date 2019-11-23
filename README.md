@@ -61,12 +61,14 @@ TBS: details about usage in different OS environments
 
 ## Using UQtie
 
++---------------+-----------------------------------------------------------------+
 | Module Name   | Purpose                                                         |
-+---------------+-----------------------------------------------------------------|
++---------------+-----------------------------------------------------------------+
 | UqtMav        | UqtMavConn allows easy use of pymavlink connections in Qt app   |
 | UqtWin        | MainWindow class provides an app main window with features      |
 | UqtStylesheet | Allows app to maintain a QSS file with variable properties -    |
 |               | a "poor man's SASS"                                             |
++---------------+-----------------------------------------------------------------+
 
 You can view the source of `simple_uqtie.py ` in the `example/` subdirectory of the repo.
 
