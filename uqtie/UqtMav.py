@@ -159,12 +159,17 @@ class UqtMavConn(object):
                 self.thread.started.connect(self.recvWorker.worker)
                 self.thread.start()
 
-            elif type(self.mavfile) in [ mavutil.mavudp, mavutil.mavtcp, mavutil.mavtcpin, mavutil.mavserial,
-                                         mavutil.mavmcast, mavutil.mavlogfile, mavutil.mavlogfile ]:
-
+            elif type(self.mavfile) in [ mavutil.mavserial ]:
                 fd = self.get_file_descriptor()
                 if fd >= 0:
                     self.notifier = QSocketNotifier(fd, QSocketNotifier.Read)
+                    self.notifier.activated.connect(self.can_read)
+
+            elif type(self.mavfile) in [ mavutil.mavudp, mavutil.mavtcp, mavutil.mavtcpin,
+                                         mavutil.mavmcast, mavutil.mavlogfile, mavutil.mavlogfile ]:
+                fd = self.get_file_descriptor()
+                if fd:
+                    self.notifier = QSocketNotifier(fd.fileno(), QSocketNotifier.Read)
                     self.notifier.activated.connect(self.can_read)
             elif isinstance(self.mavfile, mavutil.mavchildexec):
                 pass
